@@ -1,0 +1,25 @@
+<h1>Full MEAN Wall   Welcome {{PC.user.first_name}}!</h1>
+<a href ng-click="PC.logout()">Logout</a>
+<br>
+<form ng-submit="PC.create()">
+  <h3>Post a message:</h3>
+  <textarea ng-model="PC.newPost.content"></textarea>
+  <input type="submit" value="Post a Message">
+</form>
+
+<div ng-repeat="post in PC.posts">
+  <div>
+    <h3>{{post.user[0].first_name}} {{post.createdAt}}</h3>
+    <p>{{post.content}}</p>
+  </div>
+  <div ng-repeat="comment in post.comments">
+    <h3>{{comment.user[0].first_name}} {{comment.createdAt}}</h3>
+    <p>{{comment.comment}}</p>
+  </div>
+  <form ng-submit="PC.comment(post._id, newComment)">
+    <h4>Post a Comment</h4>
+    <textarea ng-model="newComment"></textarea>
+
+    <input type="submit" value="Post a comment">
+  </form>
+</div>
